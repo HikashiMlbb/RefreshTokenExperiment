@@ -75,3 +75,14 @@ style ingress font-weight:bold
 
 classDef sub fill:#1a237e10,stroke:#3949ab,stroke-width:2px,stroke-dasharray:5 5
 ```
+
+### Client-Backend Talking
+```mermaid
+sequenceDiagram
+    Frontend ->> +Backend: POST /api/authorized
+    Backend ->> +Frontend: HTTP401: Unauthorized
+    Frontend ->> Backend: POST /api/refresh
+    Backend ->> -Frontend: JWT: *token*
+    Frontend ->> +Backend: POST /api/authorized
+    Backend ->> -Frontend: HTTP200: OK
+```
